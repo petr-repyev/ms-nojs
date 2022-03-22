@@ -1,0 +1,69 @@
+# How many cores we use
+numcpu: 3
+
+
+# (Producer) beanstalkd settings
+queue:
+  # Connection string
+  dsn: 127.0.0.1:11300
+  # Incoming tube
+  in: "nojs"
+  # Outgoing tube
+  out: "js"
+
+
+# Workers 
+worker:
+  # Num goroutines
+  num: 150
+  # HTTP timeouts
+  timeouts:
+    # General (sec)
+    max: 5
+    # Connect (sec)
+    connect: 5
+    # Handhsake (sec)
+    ssl: 5
+    # Idle connection timeout(microsecs)
+    idle: 5
+    # Read headers (sec)
+    header: 5
+    # Expect continue (sec)
+    expect: 5
+    # Dial timeout
+    dial: 5
+    # Keepalive timeout
+    keepalive: 1
+  # Use keepalive
+  keepalive: false
+  # Max idle connections per host
+  perhost: 1
+  # HTTP client useragent
+  useragent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36
+
+
+# (Consumer) Storage settings
+storage:
+  # Mongodb connection
+  dsn: mongodb://127.0.0.1:27017
+  # Database
+  db: metaspy
+  # Collection
+  name: nojs
+  # Timeout (sec)
+  timeout: 10000
+  # Num goroutines
+  num: 40
+
+
+
+# Database (MysqL)
+database:
+  # Connection string
+  dsn: user:pass@tcp(0.0.0.0:3306)/db?tls=skip-verify&autocommit=true
+  # Max open connections
+  open: 50
+  # Max idle connections
+  idle: 50
+  # Max TTL
+  ttl: 1000
